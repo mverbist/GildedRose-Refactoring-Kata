@@ -193,7 +193,7 @@ class GildedRoseTest {
     @Provide
     Arbitrary<Item> conjuredItems() {
         return Combinators.combine(allSortOfSellIns(), allSortOfQualities())
-            .as((sellIn, quality) -> new Item(CONJURED_MANA_CAKE, sellIn, quality));
+            .as((sellIn, quality) -> new Item(CONJURED, sellIn, quality));
     }
 
 }
