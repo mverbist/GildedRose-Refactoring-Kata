@@ -37,7 +37,7 @@ class GildedRose {
      * 	Quality drops to 0 after the concert
      *
      */
-    public void updateQuality() {
+    public void updateItems() {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals(AGED_BRIE)
                     && !items[i].name.equals(BACKSTAGE_PASSES)) {

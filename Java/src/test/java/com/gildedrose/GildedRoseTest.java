@@ -10,14 +10,14 @@ class GildedRoseTest {
     @Property
     boolean theQualityOfAnItemIsNeverNegative(@ForAll("sortOfItems") Item anItem) {
         GildedRose gildedRose = new GildedRose(new Item[]{anItem});
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         return gildedRose.items[0].quality >= 0;
     }
 
     @Property
     boolean theQualityOfAnItemIsNeverMoreThanMAX_QUALITY(@ForAll("sortOfItems") Item anItem) {
         GildedRose gildedRose = new GildedRose(new Item[]{anItem});
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         return gildedRose.items[0].quality <= MAX_QUALITY;
     }
 
@@ -25,7 +25,7 @@ class GildedRoseTest {
     boolean theSellInDateOfItemsDecreases(@ForAll("sortOfItems") Item anItem) {
         GildedRose gildedRose = new GildedRose(new Item[]{anItem});
         int sellInBeforeUpdate = anItem.sellIn;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int sellInAfterUpdate = gildedRose.items[0].sellIn;
         return sellInAfterUpdate <= sellInBeforeUpdate;
     }
@@ -34,7 +34,7 @@ class GildedRoseTest {
     boolean theQualityOfItemsDecreases(@ForAll("sortOfItems") Item anItem) {
         GildedRose gildedRose = new GildedRose(new Item[]{anItem});
         int qualityBeforeUpdate = anItem.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate <= qualityBeforeUpdate;
     }
@@ -43,7 +43,7 @@ class GildedRoseTest {
     boolean theQualityOfAnAgedBrieIncreases(@ForAll("agedBries") Item anAgedBrie) {
         GildedRose gildedRose = new GildedRose(new Item[]{anAgedBrie});
         int qualityBeforeUpdate = anAgedBrie.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate >= qualityBeforeUpdate;
     }
@@ -52,7 +52,7 @@ class GildedRoseTest {
     boolean theQualityOfABackstagePassIncreasesBeforeTheSellDate(@ForAll("backstagePassesBeforeSellDate") Item aBackstagePass) {
         GildedRose gildedRose = new GildedRose(new Item[]{aBackstagePass});
         int qualityBeforeUpdate = aBackstagePass.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate == Math.min(qualityBeforeUpdate + 1, MAX_QUALITY);
     }
@@ -61,7 +61,7 @@ class GildedRoseTest {
     boolean theQualityOfABackstagePassIncreasesBy2WhenLessThan11DaysBeforeTheSellDate(@ForAll("backstagePassesLessThan11DaysBeforeSellDate") Item aBackstagePass) {
         GildedRose gildedRose = new GildedRose(new Item[]{aBackstagePass});
         int qualityBeforeUpdate = aBackstagePass.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate == Math.min(qualityBeforeUpdate + 2, MAX_QUALITY);
     }
@@ -70,7 +70,7 @@ class GildedRoseTest {
     boolean theQualityOfABackstagePassIncreasesBy3WhenLessThan6DaysBeforeTheSellDate(@ForAll("backstagePassesLessThan6DaysBeforeSellDate") Item aBackstagePass) {
         GildedRose gildedRose = new GildedRose(new Item[]{aBackstagePass});
         int qualityBeforeUpdate = aBackstagePass.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate == Math.min(qualityBeforeUpdate + 3, MAX_QUALITY);
     }
@@ -78,7 +78,7 @@ class GildedRoseTest {
     @Property
     boolean theQualityOfABackstagePassDropsToZeroAfterTheConcert(@ForAll("backstagePassesAfterSellDate") Item aBackstagePass) {
         GildedRose gildedRose = new GildedRose(new Item[]{aBackstagePass});
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate == 0;
     }
@@ -87,7 +87,7 @@ class GildedRoseTest {
     boolean theSulfurasNeverHaveToBeSold(@ForAll("sulfuras") Item aSulfura) {
         GildedRose gildedRose = new GildedRose(new Item[]{aSulfura});
         int sellInBeforeUpdate = aSulfura.sellIn;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int sellInAfterUpdate = gildedRose.items[0].sellIn;
         return sellInAfterUpdate >= sellInBeforeUpdate;
     }
@@ -96,7 +96,7 @@ class GildedRoseTest {
     boolean theQualityOfSulfurasNeverChanges(@ForAll("sulfuras") Item aSulfura) {
         GildedRose gildedRose = new GildedRose(new Item[]{aSulfura});
         int qualityBeforeUpdate = aSulfura.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate == qualityBeforeUpdate;
     }
@@ -105,7 +105,7 @@ class GildedRoseTest {
     boolean theQualityOfConjuredItemsDecreasesBy2(@ForAll("conjuredItems") Item aConjuredItem) {
         GildedRose gildedRose = new GildedRose(new Item[]{aConjuredItem});
         int qualityBeforeUpdate = aConjuredItem.quality;
-        gildedRose.updateQuality();
+        gildedRose.updateItems();
         int qualityAfterUpdate = gildedRose.items[0].quality;
         return qualityAfterUpdate == Math.max(qualityBeforeUpdate - 2, 0);
     }
