@@ -59,25 +59,13 @@ class GildedRose {
     };
 
     private static ItemUpdater updater(Item item) {
-        ItemUpdater updater = null;
-        switch (item.name) {
-            case BACKSTAGE_PASSES:
-                updater = backstagePassUpdater;
-                break;
-            case AGED_BRIE:
-                updater = agedBrieUpdater;
-                break;
-            case SULFURAS:
-                updater = sulfurasUpdater;
-                break;
-            case CONJURED:
-                updater = conjuredUpdater;
-                break;
-            default:
-                updater = regularUpdater;
-                break;
-
-        }
+        ItemUpdater updater = switch (item.name) {
+            case BACKSTAGE_PASSES -> backstagePassUpdater;
+            case AGED_BRIE -> agedBrieUpdater;
+            case SULFURAS -> sulfurasUpdater;
+            case CONJURED -> conjuredUpdater;
+            default -> regularUpdater;
+        };
         return updater;
     }
 
